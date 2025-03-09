@@ -4,6 +4,7 @@ package com.scaler.productservicecapstone.controllers;
 import com.scaler.productservicecapstone.ProductServiceCapstoneApplication;
 import com.scaler.productservicecapstone.dto.ProductRequestDto;
 import com.scaler.productservicecapstone.dto.ProductResponseDto;
+import com.scaler.productservicecapstone.exceptions.ProductNotFoundException;
 import com.scaler.productservicecapstone.models.Product;
 import com.scaler.productservicecapstone.services.FakeStoreApiService;
 import com.scaler.productservicecapstone.services.ProductService;
@@ -22,7 +23,7 @@ public class ProductController {
     private FakeStoreApiService fakeStoreApiService;
 
     @GetMapping("/products/{id}")
-    public ResponseEntity<ProductResponseDto> getProduct(@PathVariable long id) {
+    public ResponseEntity<ProductResponseDto> getProduct(@PathVariable long id) throws ProductNotFoundException {
 
         Product product = fakeStoreApiService.getProductById(id);
         return ResponseEntity.status(HttpStatus.OK).body(ProductResponseDto.fromProduct(product));
