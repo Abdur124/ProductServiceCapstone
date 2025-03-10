@@ -1,18 +1,20 @@
 package com.scaler.productservicecapstone.models;
 
 import com.scaler.productservicecapstone.dto.ProductResponseDto;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Product {
+@Entity
+public class Product extends BaseModel {
 
-    private long id;
-    private String name;
     private String description;
     private double price;
     private String imageUrl;
+    @ManyToOne
     private Category category;
 
 }

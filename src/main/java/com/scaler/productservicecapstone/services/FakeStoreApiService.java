@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.LinkedTransferQueue;
 
-@Service
+@Service("fakeStoreApiService")
 public class FakeStoreApiService implements ProductService {
 
     private static final String fakeStoreUrl = "https://fakestoreapi.com/products/";
