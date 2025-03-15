@@ -21,20 +21,20 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    @Qualifier("fakeStoreApiService")
-    private ProductService fakeStoreApiService;
+    @Qualifier("productDbService")
+    private ProductService productService;
 
     @GetMapping("/products/{id}")
     public ResponseEntity<ProductResponseDto> getProduct(@PathVariable long id) throws ProductNotFoundException {
 
-        Product product = fakeStoreApiService.getProductById(id);
+        Product product = productService.getProductById(id);
         return ResponseEntity.status(HttpStatus.OK).body(ProductResponseDto.fromProduct(product));
     }
 
     @GetMapping("/products")
     public List<ProductResponseDto> getAllProducts() {
 
-        List<Product> products = fakeStoreApiService.getAllProducts();
+        List<Product> products = productService.getAllProducts();
 
         List<ProductResponseDto> productResponseDtos = new ArrayList<>();
 
@@ -45,7 +45,7 @@ public class ProductController {
 
     @PostMapping("/products")
     public ProductResponseDto createProduct(@RequestBody ProductRequestDto productRequestDto) {
-            Product product = fakeStoreApiService.createProduct(productRequestDto.getTitle(), productRequestDto.getDescription(), productRequestDto.getPrice(),
+            Product product = productService.createProduct(productRequestDto.getTitle(), productRequestDto.getDescription(), productRequestDto.getPrice(),
                     productRequestDto.getImage(), productRequestDto.getCategory());
             return ProductResponseDto.fromProduct(product);
     }
