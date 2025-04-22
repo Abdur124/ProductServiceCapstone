@@ -35,13 +35,13 @@ public class ProductDBService implements ProductService{
     public List<Product> getAllProducts() {
        // return productRepository.findAll();
 
-        Optional<Category> categoryOptional = categoryRepository.findByName("Electronics");
+        //Optional<Category> categoryOptional = categoryRepository.findByName("Electronics");
 
         //List<Product> products = productRepository.findByCategory(categoryOptional.get());
 
-        List<Product> products = categoryOptional.get().getProducts();
+        //List<Product> products = categoryOptional.get().getProducts();
 
-        return products;
+        return productRepository.findAll();
     }
 
     @Override
